@@ -14,7 +14,19 @@ import java.util.ArrayList;
 
 /**
  *
- * @author rujuraj
+ * Serialization is the process of converting a data structure or object into a sequence of bits so that 
+ * it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed 
+ * later in the same or another computer environment.
+ * If given Tree is Binary Search Tree?
+If the given Binary Tree is Binary Search Tree, we can store it by either storing preorder or postorder traversal. In case of Binary Search Trees, only preorder or postorder traversal is sufficient to store structure information.
+
+If given Binary Tree is Complete Tree?
+A Binary Tree is complete if all levels are completely filled except possibly the last level and all nodes of last level are as left as possible (Binary Heaps are complete Binary Tree). For a complete Binary Tree, level order traversal is sufficient to store the tree. We know that the first node is root, next two nodes are nodes of next level, next four nodes are nodes of 2nd level and so on.
+
+If given Binary Tree is Full Tree?
+A full Binary is a Binary Tree where every node has either 0 or 2 children. It is easy to serialize such trees as every internal node has 2 children. We can simply store preorder traversal and store a bit with every node to indicate whether the node is an internal node or a leaf node.
+
+* this solution is for generic binary tree
  */
 public class SerializeBinaryTree {
     
@@ -75,6 +87,7 @@ public class SerializeBinaryTree {
         bt.root=constructBinaryTree(bt.root, list);
         return bt;
     }
+    
     public static Node constructBinaryTree(Node node,ArrayList list)
     {
         if(list.get(0).equals("-1"))
@@ -86,8 +99,8 @@ public class SerializeBinaryTree {
         {
             node=new Node();
             node.data=Integer.parseInt(String.valueOf(list.get(0)));
-            list.remove(list.get(0));
-            node.left=constructBinaryTree(node.left, list);
+            list.remove(list.get(0));// always access the next element of list
+            node.left=constructBinaryTree(node.left, list); // required for java's pass-by-value reference where it only retains properties of passed reference
             node.right=constructBinaryTree(node.right, list);   
         }
         return node;

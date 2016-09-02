@@ -10,7 +10,7 @@ package datastructures.tree;
  * @author rujuraj
  */
 public class Node {
-    int data=-999;
-    Node left;
-    Node right;
+    public int data=-999;
+    public Node left;
+    public Node right;
 }

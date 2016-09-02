@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastructures.tree.linkedlist;
+package datastructures.linkedlist;
 
 /**
  *
@@ -11,6 +11,27 @@ package datastructures.tree.linkedlist;
  */
 public class LinkedListClass {
     public Node head;
+    Node fx(Node head)
+    {
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+        Node h=new Node();
+        h.data=0;
+        h.next=head;
+        Node p=h;
+        while(p.next!=null && p.next.next!=null)
+        {
+            Node t1=p;
+            p=p.next;
+            t1.next=p.next;
+            Node t2=p.next.next;
+            p.next.next=p;
+            p.next=t2;
+        }
+        return h.next;
+    }
     void insertAtEnd(int newData)
     {
         if(head==null)
