@@ -63,10 +63,12 @@ public class MultiStageGraph {
                 graph.E=E;
 
 	}
+        // O(EV)
 	public static void findMinCost(Vertice source,Vertice desti)
 	{
+            // save cost from a particular Vertice to desti
 		HashMap<Vertice,Integer> cost=new HashMap<Vertice,Integer>();
-		cost.put(desti,0);
+		cost.put(desti,0);// desti to desti cost is 0
 		for(int i=graph.V.size()-1;i>=0;i--)
 		{
 			Vertice current=graph.V.get(i);
@@ -74,15 +76,15 @@ public class MultiStageGraph {
 			int min=Integer.MAX_VALUE;
 			for(int j=0;j<edges.size();j++)
 			{
-				Edge edge=edges.get(j);
-				int total=cost.get(edge.end)+edge.getCost();
-				if(total<min)
-				{
-					min=total;
-				}
+                            Edge edge=edges.get(j);
+                            int total=cost.get(edge.end)+edge.getCost();// total=already computed cost till desti+current cost of edge
+                            if(total<min)
+                            {
+                                min=total;
+                            }
 			}
 			if(min==Integer.MAX_VALUE)
-				min=0;
+                            min=0;
 			cost.put(current,min);
 		}
 		System.out.println("min cost is="+cost.get(source));
@@ -98,14 +100,15 @@ class Graph
 {
     ArrayList<Vertice> V=new ArrayList<>();
     ArrayList<Edge> E=new ArrayList<>();
+    // gets all edges starting from vertice
     public ArrayList<Edge> getEdgeFrom(Vertice vertice)
     {
     	ArrayList<Edge> edges=new ArrayList<Edge>();
     	for(int i=0;i<E.size();i++)
     	{
             Edge edge=E.get(i);
-    		if(edge.start.num==vertice.num && edge.end.num!=-1)
-    			edges.add(edge);
+            if(edge.start.num==vertice.num && edge.end.num!=-1) // -1 indicates no vertice
+    		edges.add(edge);
     	}
     	return edges;
     }
