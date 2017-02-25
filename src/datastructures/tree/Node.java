@@ -13,4 +13,12 @@ public class Node {
     public int data=-999;
     public Node left;
     public Node right;
+
+    public Node() {
+    }
+
+    public Node(int data) {
+        this.data=data;
+    }
+    
 }

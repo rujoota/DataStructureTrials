@@ -29,7 +29,7 @@ public class TestClass {
         //System.out.println("DFS:");
         //graph.DFS(root);
         System.out.println("BFS:");
-        //graph.BFS(root);
-        System.out.println("cycle:"+graph.detectCycle(root));
+        graph.BFS(root);
+        //System.out.println("cycle:"+graph.detectCycle(root));
     }
 }

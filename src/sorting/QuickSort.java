@@ -30,6 +30,7 @@ public class QuickSort {
             quicksort(arr, pivot+1, end);
         }
     }
+    
     public static int findPivot(int []arr,int start,int end)
     {
         int pivot=end;
