@@ -25,12 +25,29 @@ public class QuickSort {
         }
         else
         {
-            int pivot=findPivot(arr, start, end);
-            quicksort(arr, start, pivot-1);
-            quicksort(arr, pivot+1, end);
+            int pivot1=findPivot(arr, start, end);
+            int pivot2=partition(arr, start, end);
+            System.out.println("pivot1="+pivot1+",pivot2="+pivot2);
+            quicksort(arr, start, pivot2-1);
+            quicksort(arr, pivot2+1, end);
         }
     }
-    
+    public static int partition(int []arr,int start,int end){
+        int pivot=arr[end];
+        int pivotIndex=start;
+        for(int j=start;j<=end-1;j++){
+            if(arr[j]<=pivot){
+                int temp=arr[j];
+                arr[j]=arr[pivotIndex];
+                arr[pivotIndex]=temp;
+                pivotIndex++;
+            }
+        }
+        int temp=arr[end];
+        arr[end]=arr[pivotIndex];
+        arr[pivotIndex]=temp;
+        return pivotIndex;
+    }
     public static int findPivot(int []arr,int start,int end)
     {
         int pivot=end;
@@ -59,6 +76,6 @@ public class QuickSort {
         return pivotIndex;
     }
     public static void main(String[] args) {
-        sort(new int[]{5,7,3,9,10,3,1,4});
+        sort(new int[]{5,7,3,9,10,1,4});
     }
 }
